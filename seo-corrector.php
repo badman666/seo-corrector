@@ -1,9 +1,10 @@
 <?php
 /*
-* Plugin Name: SEO corrector
-* Description: Корректирует СЕО
-* Version: 0.0.1
-* Author: BadMan666
+ * Plugin Name: SEO corrector
+ * Description: Корректирует СЕО
+ * Plugin URI: https://github.com/badman666/seo-corrector
+ * Version: 0.0.1
+ * Author: BadMan666
 */
 
 /**
@@ -32,12 +33,12 @@ function SCAdminContent()
 function SCAdminMenu()
 {
     add_menu_page(
-            'SEO corrector',
-            'SEO corrector',
-            8,
-            basename(__FILE__),
-            'SCAdminContent',
-            'dashicons-buddicons-activity'
+        'SEO corrector',
+        'SEO corrector',
+        8,
+        basename(__FILE__),
+        'SCAdminContent',
+        'dashicons-buddicons-activity'
     );
 }
 add_action('admin_menu', 'SCAdminMenu');
