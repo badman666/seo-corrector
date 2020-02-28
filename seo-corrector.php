@@ -3,7 +3,7 @@
  * Plugin Name: SEO corrector
  * Description: Корректирует СЕО
  * Plugin URI: https://github.com/badman666/seo-corrector
- * Version: 0.0.1
+ * Version: 0.0.2
  * Author: BadMan666
 */
 
@@ -20,7 +20,10 @@ function SCAdminContent()
             <ol>
                 <li>301 redirect /bez-rubriki/ -> /</li>
                 <li>Все канонические ссылки со страниц ведут на главную страницу раздела</li>
-                <li>Если в разделе нет контента, то ставится тег <?= htmlspecialchars('<meta name="robots" content="noindex,follow"/>')?></li>
+                <li>
+                    Если в разделе нет контента или раздел с дополнительной станцией метро,
+                    то ставится тег <?= htmlspecialchars('<meta name="robots" content="noindex,follow"/>')?>
+                </li>
             </ol>
         </div>
     </div>
@@ -60,6 +63,7 @@ add_action('init', 'SCRedirect');
 
 /**
  * Изменение поведения Yoast SEO на хук wpseo_canonical
+ * Все канонические ссылки страниц раздела ведут на главную страницу раздела
  * @param $canonical
  * @return string
  */
@@ -75,15 +79,24 @@ add_filter('wpseo_canonical', 'SCEditCanonical', 10, 1);
 
 /**
  * Изменение поведения Yoast SEO на хук wpseo_robots
+ * Если пустой раздел или раздес с дополнительным метро запрещаем индексацию
  * @param $content
  * @return string
  */
-function SCEmptySection($content)
+function SCBadPage($content)
 {
-    if (!have_posts()) {
+    $extraSubway = false;
+    $path = htmlspecialchars($_SERVER['REQUEST_URI']);
+    $search = 'extra';
+
+    if (strpos($path, $search) !== false) {
+        $extraSubway = true;
+    }
+
+    if (!have_posts() || $extraSubway) {
         $content = 'noindex,follow';
     }
 
     return $content;
 }
-add_filter('wpseo_robots', 'SCEmptySection', 999);
+add_filter('wpseo_robots', 'SCBadPage', 999);
