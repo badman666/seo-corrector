@@ -41,7 +41,7 @@ function SCAdminMenu()
         8,
         basename(__FILE__),
         'SCAdminContent',
-        'dashicons-buddicons-activity'
+        'dashicons-lightbulb'
     );
 }
 add_action('admin_menu', 'SCAdminMenu');
