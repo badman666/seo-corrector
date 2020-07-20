@@ -100,3 +100,66 @@ function SCBadPage($content)
     return $content;
 }
 add_filter('wpseo_robots', 'SCBadPage', 999);
+
+/**
+ * 301 редирект со старых ссылок после обновения плагина
+ * Update 26.06.2020 - BadMan
+ */
+function SCredirectOldUrl()
+{
+    $currentUrl = $_SERVER['REQUEST_URI'];
+    // метро
+    $newUrl = str_replace(
+        ['/subway/', '/underground/', '/subways/'],
+        '/station/',
+        $currentUrl
+    );
+    // дополнительное метро
+    $newUrl = str_replace(
+        ['/subwayextra/', '/underground-extra/', '/subways-extra/'],
+        '/stationextra/',
+        $newUrl
+    );
+    // район
+    $newUrl = str_replace(
+        ['/area/', '/district/', '/arays/'],
+        '/locate/',
+        $newUrl
+    );
+    // услуги
+    $newUrl = str_replace(
+        ['/myservices/', '/services-for-sex/', '/sex-services/'],
+        '/serv/',
+        $newUrl
+    );
+    // национальность
+    $newUrl = str_replace(
+        ['/girl-nation/', '/nationality/', '/sex-nations/'],
+        '/nation/',
+        $newUrl
+    );
+    // цвет волос
+    $newUrl = str_replace(
+        ['/girl-hair/', '/girls-hair/'],
+        '/hair-color/',
+        $newUrl
+    );
+    // возраст
+    $newUrl = str_replace(
+        ['/girl-age/', '/years-old/', '/girls-age/'],
+        '/myage/',
+        $newUrl
+    );
+    // цена
+    $newUrl = str_replace(
+        ['/girl-price/', '/cash/', '/girls-coast/'],
+        '/myprice/',
+        $newUrl
+    );
+
+    if ($currentUrl != $newUrl) {
+        wp_redirect($newUrl, 301);
+        exit();
+    }
+}
+// add_action('plugins_loaded', 'SCredirectOldUrl');
