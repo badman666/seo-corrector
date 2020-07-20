@@ -103,14 +103,14 @@ add_filter('wpseo_robots', 'SCBadPage', 999);
 
 /**
  * 301 редирект со старых ссылок после обновения плагина
- * Update 26.06.2020 - BadMan
+ * Update 20.07.2020 - BadMan
  */
 function SCredirectOldUrl()
 {
     $currentUrl = $_SERVER['REQUEST_URI'];
     // метро
     $newUrl = str_replace(
-        ['/subway/', '/underground/', '/subways/'],
+        ['/subway/', '/underground/', '/subways/','/stantsiya-metro/', '/metro/', '/metro-station/', '/st-metro/', '/city-metro/'],
         '/station/',
         $currentUrl
     );
@@ -122,37 +122,37 @@ function SCredirectOldUrl()
     );
     // район
     $newUrl = str_replace(
-        ['/area/', '/district/', '/arays/'],
+        ['/area/', '/district/', '/arays/', '/rajon/', '/locations/', '/raion/', '/city-loc/', '/rayon/'],
         '/locate/',
         $newUrl
     );
     // услуги
     $newUrl = str_replace(
-        ['/myservices/', '/services-for-sex/', '/sex-services/'],
+        ['/myservices/', '/services-for-sex/', '/sex-services/', '/intim-uslugi/', '/services/', '/types-services/', '/uslugi/', '/girls-services/'],
         '/serv/',
         $newUrl
     );
     // национальность
     $newUrl = str_replace(
-        ['/girl-nation/', '/nationality/', '/sex-nations/'],
+        ['/girl-nation/', '/nationality/', '/sex-nations/', '/natsionalnost/', '/nacionalnost/', '/girls-nation/'],
         '/nation/',
         $newUrl
     );
     // цвет волос
     $newUrl = str_replace(
-        ['/girl-hair/', '/girls-hair/'],
+        ['/girl-hair/', '/girls-hair/', '/volosy/', '/hair/', '/volosi/'],
         '/hair-color/',
         $newUrl
     );
     // возраст
     $newUrl = str_replace(
-        ['/girl-age/', '/years-old/', '/girls-age/'],
+        ['/girl-age/', '/years-old/', '/girls-age/', '/vozrast/', '/age/'],
         '/myage/',
         $newUrl
     );
     // цена
     $newUrl = str_replace(
-        ['/girl-price/', '/cash/', '/girls-coast/'],
+        ['/girl-price/', '/cash/', '/girls-coast/', '/tseny/', '/price/', '/ceni/', '/girls-price/', '/ceny/'],
         '/myprice/',
         $newUrl
     );
