@@ -162,4 +162,4 @@ function SCredirectOldUrl()
         exit();
     }
 }
-// add_action('plugins_loaded', 'SCredirectOldUrl');
+add_action('plugins_loaded', 'SCredirectOldUrl');
