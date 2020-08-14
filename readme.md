@@ -1,5 +1,5 @@
 # SEO corrector  
-> Version 0.0.2  
+> Version 0.0.3  
 
 ## Что делает данный плагин: 
 1. 301 redirect /bez-rubriki/ -> /

@@ -122,7 +122,7 @@ function SCredirectOldUrl()
     );
     // район
     $newUrl = str_replace(
-        ['/area/', '/district/', '/arays/', '/rajon/', '/locations/', '/raion/', '/city-loc/', '/rayon/'],
+        ['/area/', '/district/', '/arays/', '/rajon/', '/locations/', '/raion/', '/city-loc/', '/rayon/', '/loc/'],
         '/locate/',
         $newUrl
     );
