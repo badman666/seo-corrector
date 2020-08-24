@@ -114,7 +114,7 @@ function SCredirectOldUrl()
     $currentUrl = $_SERVER['REQUEST_URI'];
     // метро
     $newUrl = str_replace(
-        ['/subway/', '/underground/', '/subways/', '/stantsiya-metro/', '/metro/', '/metro-station/', '/st-metro/', '/city-metro/', 'metropoliten'],
+        ['/subway/', '/underground/', '/subways/', '/stantsiya-metro/', '/metro/', '/metro-station/', '/st-metro/', '/city-metro/', '/metropoliten/'],
         '/station/',
         $currentUrl
     );
@@ -138,7 +138,7 @@ function SCredirectOldUrl()
     );
     // национальность
     $newUrl = str_replace(
-        ['/girl-nation/', '/nationality/', '/sex-nations/', '/natsionalnost/', '/nacionalnost/', '/girls-nation/', 'national'],
+        ['/girl-nation/', '/nationality/', '/sex-nations/', '/natsionalnost/', '/nacionalnost/', '/girls-nation/', '/national/'],
         '/nation/',
         $newUrl
     );
@@ -156,7 +156,7 @@ function SCredirectOldUrl()
     );
     // цена
     $newUrl = str_replace(
-        ['/girl-price/', '/cash/', '/girls-coast/', '/tseny/', '/price/', '/ceni/', '/girls-price/', '/ceny/', 'coasts'],
+        ['/girl-price/', '/cash/', '/girls-coast/', '/tseny/', '/price/', '/ceni/', '/girls-price/', '/ceny/', '/coasts/'],
         '/myprice/',
         $newUrl
     );
