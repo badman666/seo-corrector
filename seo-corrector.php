@@ -12,7 +12,7 @@
  */
 function SCAdminContent()
 {
-?>
+    ?>
     <div class="sc-wrap">
         <div class="sc-content">
             <h2>SEO corrector</h2>
@@ -22,12 +22,12 @@ function SCAdminContent()
                 <li>Все канонические ссылки со страниц ведут на главную страницу раздела</li>
                 <li>
                     Если в разделе нет контента или раздел с дополнительной станцией метро,
-                    то ставится тег <?= htmlspecialchars('<meta name="robots" content="noindex,follow"/>')?>
+                    то ставится тег <?= htmlspecialchars('<meta name="robots" content="noindex,follow"/>') ?>
                 </li>
             </ol>
         </div>
     </div>
-<?php
+    <?php
 }
 
 /**
@@ -44,6 +44,7 @@ function SCAdminMenu()
         'dashicons-lightbulb'
     );
 }
+
 add_action('admin_menu', 'SCAdminMenu');
 
 /**
@@ -53,13 +54,14 @@ function SCRedirect()
 {
     $path = htmlspecialchars($_SERVER['REQUEST_URI']);
     $search = 'bez-rubriki';
-    
+
     if (strpos($path, $search) !== false) {
         wp_redirect('/', 301);
         exit();
     }
 }
-add_action('init', 'SCRedirect');
+
+add_action('plugins_loaded', 'SCRedirect');
 
 /**
  * Изменение поведения Yoast SEO на хук wpseo_canonical
@@ -75,6 +77,7 @@ function SCEditCanonical($canonical)
 
     return $canonical;
 }
+
 add_filter('wpseo_canonical', 'SCEditCanonical', 10, 1);
 
 /**
@@ -99,6 +102,7 @@ function SCBadPage($content)
 
     return $content;
 }
+
 add_filter('wpseo_robots', 'SCBadPage', 999);
 
 /**
@@ -110,7 +114,7 @@ function SCredirectOldUrl()
     $currentUrl = $_SERVER['REQUEST_URI'];
     // метро
     $newUrl = str_replace(
-        ['/subway/', '/underground/', '/subways/','/stantsiya-metro/', '/metro/', '/metro-station/', '/st-metro/', '/city-metro/'],
+        ['/subway/', '/underground/', '/subways/', '/stantsiya-metro/', '/metro/', '/metro-station/', '/st-metro/', '/city-metro/', 'metropoliten'],
         '/station/',
         $currentUrl
     );
@@ -134,7 +138,7 @@ function SCredirectOldUrl()
     );
     // национальность
     $newUrl = str_replace(
-        ['/girl-nation/', '/nationality/', '/sex-nations/', '/natsionalnost/', '/nacionalnost/', '/girls-nation/'],
+        ['/girl-nation/', '/nationality/', '/sex-nations/', '/natsionalnost/', '/nacionalnost/', '/girls-nation/', 'national'],
         '/nation/',
         $newUrl
     );
@@ -152,7 +156,7 @@ function SCredirectOldUrl()
     );
     // цена
     $newUrl = str_replace(
-        ['/girl-price/', '/cash/', '/girls-coast/', '/tseny/', '/price/', '/ceni/', '/girls-price/', '/ceny/'],
+        ['/girl-price/', '/cash/', '/girls-coast/', '/tseny/', '/price/', '/ceni/', '/girls-price/', '/ceny/', 'coasts'],
         '/myprice/',
         $newUrl
     );
@@ -162,4 +166,5 @@ function SCredirectOldUrl()
         exit();
     }
 }
+
 add_action('plugins_loaded', 'SCredirectOldUrl');
